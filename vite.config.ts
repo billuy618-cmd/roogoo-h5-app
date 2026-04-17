@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/roogoo-h5-app/',
   plugins: [
     vue(),
     vueDevTools(),
