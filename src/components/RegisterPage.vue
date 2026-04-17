@@ -47,11 +47,11 @@ const sendVerificationCode = () => {
   
   // 模拟发送验证码
   countdown.value = 60
-  timer.value = setInterval(() => {
+  timer = setInterval(() => {
     countdown.value--
-    if (countdown.value <= 0 && timer.value) {
-      clearInterval(timer.value)
-      timer.value = null
+    if (countdown.value <= 0 && timer) {
+      clearInterval(timer)
+      timer = null
     }
   }, 1000)
 }
@@ -59,15 +59,15 @@ const sendVerificationCode = () => {
 // 清理定时器
 import { onUnmounted } from 'vue'
 onUnmounted(() => {
-  if (timer.value) {
-    clearInterval(timer.value)
+  if (timer) {
+    clearInterval(timer)
   }
 })
 </script>
 
 <template>
   <v-container class="fill-height d-flex align-center justify-center">
-    <v-card class="pa-8" width="400" elevation="2">
+    <v-card class="pa-8" width="400" elevation="0" style="border-radius: 16px;">
       <v-btn
         icon
         variant="text"
@@ -77,7 +77,7 @@ onUnmounted(() => {
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       
-      <v-card-title class="text-h5 text-center mb-6">注册 Roogoo 账号</v-card-title>
+      <v-card-title class="text-h5 text-center mb-6 font-weight-bold">注册 Roogoo 账号</v-card-title>
       
       <v-card-text>
         <v-form @submit.prevent="handleRegister">
@@ -89,6 +89,7 @@ onUnmounted(() => {
             class="mb-4"
             :rules="[v => !!v || '请输入邮箱']"
             required
+            density="comfortable"
           />
           
           <div class="d-flex align-center mb-4">
@@ -99,12 +100,14 @@ onUnmounted(() => {
               class="mr-2"
               :rules="[v => !!v || '请输入验证码']"
               required
+              density="comfortable"
             />
             <v-btn
               color="primary"
               variant="outlined"
               :disabled="!email || countdown > 0"
               @click="sendVerificationCode"
+              style="border-radius: 6px;"
             >
               {{ countdown > 0 ? `${countdown}s` : '发送验证码' }}
             </v-btn>
@@ -120,6 +123,7 @@ onUnmounted(() => {
             required
             :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
             @click:append-inner="showPassword = !showPassword"
+            density="comfortable"
           />
           
           <v-text-field
@@ -135,6 +139,7 @@ onUnmounted(() => {
             required
             :append-inner-icon="showConfirmPassword ? 'mdi-eye-off' : 'mdi-eye'"
             @click:append-inner="showConfirmPassword = !showConfirmPassword"
+            density="comfortable"
           />
           
           <v-btn
@@ -144,6 +149,7 @@ onUnmounted(() => {
             type="submit"
             :loading="loading"
             :disabled="!email || !verificationCode || !password || !confirmPassword || password !== confirmPassword"
+            style="border-radius: 8px;"
           >
             注册
           </v-btn>

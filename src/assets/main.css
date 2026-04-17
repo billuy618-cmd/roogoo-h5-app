@@ -8,15 +8,15 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #fafafa;
+  background-color: #ffffff;
   font-family: 'Roboto', sans-serif;
 }
 
 #app {
   min-height: 100vh;
-  background-color: #fafafa;
+  background-color: #ffffff;
 }
 
 .v-application {
-  background-color: #fafafa !important;
+  background-color: #ffffff !important;
 }

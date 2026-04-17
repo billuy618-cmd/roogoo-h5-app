@@ -33,7 +33,7 @@ const navigateToHome = () => {
 
 <template>
   <v-container class="fill-height d-flex align-center justify-center">
-    <v-card class="pa-8" width="400" elevation="2">
+    <v-card class="pa-8" width="400" elevation="0" style="border-radius: 16px;">
       <v-btn
         icon
         variant="text"
@@ -43,7 +43,7 @@ const navigateToHome = () => {
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       
-      <v-card-title class="text-h5 text-center mb-6">登录 Roogoo</v-card-title>
+      <v-card-title class="text-h5 text-center mb-6 font-weight-bold">登录 Roogoo</v-card-title>
       
       <v-card-text>
         <v-form @submit.prevent="handleLogin">
@@ -55,6 +55,7 @@ const navigateToHome = () => {
             class="mb-4"
             :rules="[v => !!v || '请输入邮箱']"
             required
+            density="comfortable"
           />
           
           <v-text-field
@@ -67,6 +68,7 @@ const navigateToHome = () => {
             required
             :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
             @click:append-inner="showPassword = !showPassword"
+            density="comfortable"
           />
           
           <div class="text-right mb-6">
@@ -80,6 +82,7 @@ const navigateToHome = () => {
             type="submit"
             :loading="loading"
             :disabled="!email || !password"
+            style="border-radius: 8px;"
           >
             登录
           </v-btn>
